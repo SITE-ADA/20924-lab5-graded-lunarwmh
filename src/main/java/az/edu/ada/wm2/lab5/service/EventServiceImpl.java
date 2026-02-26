@@ -100,7 +100,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByDateRange(LocalDateTime start, LocalDateTime end) {
-        return List.of();
+        return EventRepository.findByDateTimeBetween(start, end);
     }
 
     @Override
