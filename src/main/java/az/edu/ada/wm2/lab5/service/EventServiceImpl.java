@@ -85,12 +85,12 @@ public class EventServiceImpl implements EventService {
     // Custom methods
     @Override
     public List<Event> getEventsByTag(String tag) {
-        return List.of();
+        return EventRepository.findByTag(tag);
     }
 
     @Override
     public List<Event> getUpcomingEvents() {
-        return List.of();
+        return EventRepository.findAll();
     }
 
     @Override
@@ -100,12 +100,15 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<Event> getEventsByDateRange(LocalDateTime start, LocalDateTime end) {
-        return List.of();
+        return EventRepository.findByDateTimeBetween(start, end);
     }
 
     @Override
     public Event updateEventPrice(UUID id, BigDecimal newPrice) {
-        return null;
+        if (!EventRepository.existsById(product.getId())) {
+            return null;
+        }
+        return productRepository.save(product);
     }
 
 }
