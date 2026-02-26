@@ -85,7 +85,7 @@ public class EventServiceImpl implements EventService {
     // Custom methods
     @Override
     public List<Event> getEventsByTag(String tag) {
-        return EventRepository.findByTag(tag)
+        return EventRepository.findByTag(tag);
     }
 
     @Override
@@ -105,7 +105,10 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event updateEventPrice(UUID id, BigDecimal newPrice) {
-        return null;
+        if (!EventRepository.existsById(product.getId())) {
+            return null;
+        }
+        return productRepository.save(product);
     }
 
 }
